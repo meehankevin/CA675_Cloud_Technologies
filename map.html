@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 70%;
+		align: center;
+		margin: 15px 30px 10px 30px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+	  /* Changes header style */
+	  h1 {
+		color: #F2F4F3; 
+		background-color: #4CAF50;
+		font-family: 'Century Gothic; 
+		font-size: 45px; 
+		font-weight: normal; 
+		line-height: 50px; 
+		margin: 0; 
+		width: 100%;
+		text-align: center; 
+		text-shadow: 1px 1px 2px #082b34;
+		
+	  }
+	  /* Dropdown Button */
+	.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+	margin: 0px 100px;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+	}
+
+	  /* Lists */
+	.list {
+    background-color: #4CAF50;
+    color: white;
+	margin: 0px 70px;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+	}
+
+	/* Dropdown button on hover & focus */
+	.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+	}
+
+	/* The container <div> - needed to position the dropdown content */
+	.dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	/* Dropdown Content (Hidden by Default) */
+	.dropdown-content {
+		display: none;
+		position: relative;
+		margin: 0 100px;
+		background-color: #f9f9f9;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+	}
+
+	/* Links inside the dropdown */
+	.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
+
+	/* Change color of dropdown links on hover */
+	.dropdown-content a:hover {background-color: #f1f1f1}
+
+	/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+	.show {display:block;}
+    </style>
+	<h1>Vegetarian Restaurant Locator</h1>
+    <div id="map"></div>
+	<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC-lYm-UDHdVcc3c0bKqpRi4Jmm5TmORHw&sensor=true">
+    </script>
+    <script type="text/javascript">
+      var map;
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(37, -97),
+          zoom: 4,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
+      }
+    </script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script> 
+	</head>
+	<body onload="initialize()">
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $.getJSON("vegg.json", function(json1) {
+          $.each(json1, function(key, data) {
+            var latLng = new google.maps.LatLng(data.lat, data.long); 
+            // Creating a marker and putting it on the map
+            var marker = new google.maps.Marker({
+                position: latLng,
+                title: data.name
+            });
+            marker.setMap(map);
+          });
+        });
+      });
+    </script>
+	<select class = "list">
+	<option value=1>Top</option>
+	<option value=2>Bottom</option>    
+	</select>
+	<select class = "list">
+	<option value=1>10</option>
+	<option value=2>20</option>
+	<option value=2>50</option>
+	<option value=2>100</option>
+	</select>
+	<h2 style="display:inline;color:#4CAF50;font-family;'Century Gothic;"> by </h2>
+	<select class = "list">
+	<option value=1>Any State</option>
+	<option value=1>AL</option>
+	<option value=1>AK</option>
+	<option value=1>AS</option>
+	<option value=1>AZ</option>
+	<option value=1>AR</option>
+	<option value=1>CA</option>
+	<option value=1>CO</option>
+	<option value=1>CT</option>
+	<option value=1>DE</option>
+	<option value=1>DC</option>
+	<option value=1>FL</option>
+	<option value=1>GA</option>
+	<option value=1>GU</option>
+	<option value=1>HI</option>
+	<option value=1>ID</option>
+	<option value=1>IL</option>
+	<option value=1>IN</option>
+	<option value=1>IA</option>
+	<option value=1>KS</option>
+	<option value=1>KY</option>
+	<option value=1>LA</option>
+	<option value=1>ME</option>
+	<option value=1>MD</option>
+	<option value=1>MH</option>
+	<option value=1>MA</option>
+	<option value=1>MI</option>
+	<option value=1>FM</option>
+	<option value=1>MN</option>
+	<option value=1>MS</option>
+	<option value=1>MO</option>
+	<option value=1>MT</option>
+	<option value=1>NE</option>
+	<option value=1>NV</option>
+	<option value=1>NH</option>
+	<option value=1>NJ</option>
+	<option value=1>NM</option>
+	<option value=1>NY</option>
+	<option value=1>NC</option>
+	<option value=1>ND</option>
+	<option value=1>MP</option>
+	<option value=1>OH</option>
+	<option value=1>OK</option>
+	<option value=1>OR</option>
+	<option value=1>PW</option>
+	<option value=1>PA</option>
+	<option value=1>PR</option>
+	<option value=1>RI</option>
+	<option value=1>SC</option>
+	<option value=1>SD</option>
+	<option value=1>TN</option>
+	<option value=1>TX</option>
+	<option value=1>UT</option>
+	<option value=1>VT</option>
+	<option value=1>VA</option>
+	<option value=1>VI</option>
+	<option value=1>WA</option>
+	<option value=1>WV</option>
+	<option value=1>WI</option>
+	<option value=1>WY</option>
+	</select>
+	<select class = "list" style="margin:0;">
+	<option value=1>Any Cuisine</option>
+	<option value=1>American</option>
+	<option value=1>Italian</option>
+	<option value=1>Korean</option>
+	<option value=1>Chinese</option>
+	<option value=1>Thai</option>
+	<option value=1>Indian</option>
+	<option value=1>Mexican</option>
+	</select>
+	<div class="dropdown">
+	<button onclick="myFunction()" class="dropbtn" style="font-weight:bold;background-color:#006600;align:right;">Find Restaraunts</button>
+	</div>
+	<script>
+	function myFunction() {
+	alert("Ideally this would filter the map to show only locations where markers have been selected");
+	}
+	</script>
+  </body>
+</html>
